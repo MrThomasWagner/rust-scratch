@@ -3,7 +3,7 @@ fn main() {
     let w = Message::Write(String::from("A message to you, Rudy"));
     println!("{w:?}");
 
-    let q = Message::Quit();
+    let q = Message::Quit(-1);
     println!("{q:?}");
 
     let cc = Message::ChangeColor(RGB {
@@ -58,7 +58,7 @@ fn number_match(some_three: Option<i32>) {
 
 #[derive(Debug)]
 enum Message {
-    Quit(),
+    Quit(i32),
     Write(String),
     ChangeColor(RGB),
     Move { x: u32, y: u32 },
@@ -74,7 +74,7 @@ struct RGB {
 impl Message {
     fn foo(&self) {
         match self {
-            Message::Quit() => println!("idk!"),
+            Message::Quit(_) => println!("idk!"),
             Message::Write(_) => println!("idk!"),
             Message::ChangeColor(_) => println!("idk!"),
             Message::Move { x, y } => println!("idk!"),
