@@ -19,6 +19,15 @@ fn main() {
     println!("OH? o: {}", o);
 
     main2();
+
+    let mut normal_str = String::from("A normal string");
+    println!("Before mutation: {normal_str}");
+    mutation(&mut normal_str);
+    println!("After mutation: {normal_str}");
+}
+
+fn mutation(s: &mut String) {
+    s.push_str("; Eww you mutated me!");
 }
 
 //fn take_ownership(s: String) {
@@ -57,3 +66,4 @@ fn first_word(s: &String) -> &str {
 
     &s[..]
 }
+
