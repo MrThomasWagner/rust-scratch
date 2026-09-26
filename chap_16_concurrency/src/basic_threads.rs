@@ -26,3 +26,14 @@ pub fn passing_variables() {
     handle.join().unwrap();
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+
+    #[test]
+    fn testing_out_threads() {
+        basic_thread_spawn();
+        passing_variables();
+    }
+}
