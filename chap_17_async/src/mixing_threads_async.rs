@@ -1,0 +1,29 @@
+use std::{thread, time::Duration};
+
+
+pub fn mixed() {
+    let (tx, mut rx) = trpl::channel();
+
+    thread::spawn(move || {
+        for i in 1..11 {
+            tx.send(i).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    trpl::block_on(async {
+        while let Some(message) = rx.recv().await {
+            println!("{message}");
+        }
+    });
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn testing_sending_messages() {
+        mixed();
+    }
+}
